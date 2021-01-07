@@ -43,12 +43,12 @@ func (p program) run() {
 	writingSync.Lock()
 	programIsRunning = true
 	writingSync.Unlock()
-	//writeBenchmark("postgres")
-	//writeBenchmark("timescale")
-	//writeBenchmark("mysql")
-	//writeBenchmark("mariadb")
-	//writeBenchmark("percona")
-	//writeBenchmark("sqlserver")
+	writeBenchmark("postgres")
+	writeBenchmark("timescale")
+	writeBenchmark("mysql")
+	writeBenchmark("mariadb")
+	writeBenchmark("percona")
+	writeBenchmark("sqlserver")
 	readBenchmark("postgres")
 	readBenchmark("timescale")
 	readBenchmark("mysql")
@@ -59,8 +59,6 @@ func (p program) run() {
 	programIsRunning = false
 	writingSync.Unlock()
 }
-
-
 
 func main() {
 	serviceConfig := &service.Config{
