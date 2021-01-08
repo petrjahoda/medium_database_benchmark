@@ -43,18 +43,24 @@ func (p program) run() {
 	writingSync.Lock()
 	programIsRunning = true
 	writingSync.Unlock()
-	writeBenchmark("postgres")
-	writeBenchmark("timescale")
-	writeBenchmark("mysql")
-	writeBenchmark("mariadb")
-	writeBenchmark("percona")
-	writeBenchmark("sqlserver")
-	readBenchmark("postgres")
-	readBenchmark("timescale")
-	readBenchmark("mysql")
-	readBenchmark("mariadb")
-	readBenchmark("percona")
-	readBenchmark("sqlserver")
+	for i := 0; i < 5; i++ {
+		writeBenchmark("postgres")
+		//writeBenchmark("timescale")
+		//writeBenchmark("mysql")
+		//writeBenchmark("mariadb")
+		//writeBenchmark("percona")
+		//writeBenchmark("sqlserver")
+		time.Sleep(1 * time.Second)
+	}
+	for i := 0; i < 5; i++ {
+		readBenchmark("postgres")
+		//readBenchmark("timescale")
+		//readBenchmark("mysql")
+		//readBenchmark("mariadb")
+		//readBenchmark("percona")
+		//readBenchmark("sqlserver")
+		time.Sleep(1 * time.Second)
+	}
 	writingSync.Lock()
 	programIsRunning = false
 	writingSync.Unlock()

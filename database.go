@@ -122,8 +122,6 @@ func writeData(databaseType string, databases map[string]string) {
 	}
 }
 
-
-
 type BenchmarkData struct {
 	gorm.Model
 	Data int
@@ -162,17 +160,18 @@ func createDatabaseAndTable(databaseType string, databases map[string]string) {
 	sqlDB, _ := database.DB()
 	defer sqlDB.Close()
 	if err != nil {
-		fmt.Println("Problem opening database: "+err.Error())
+		fmt.Println("Problem opening database: " + err.Error())
 		return
 	}
 	fmt.Println(databaseType + " connected")
-	
+
 	if !database.Migrator().HasTable(&BenchmarkData{}) {
 		err := database.Migrator().CreateTable(&BenchmarkData{})
 		if err != nil {
 			fmt.Println("Cannot create table: " + err.Error())
 			return
 		}
+		database.Raw("SELECT create_hypertable('benchmark_data', 'created_at');")
 	} else {
 		err := database.Migrator().AutoMigrate(&BenchmarkData{})
 		if err != nil {
