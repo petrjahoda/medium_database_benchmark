@@ -70,7 +70,7 @@ func writeBenchmark(databaseType string) {
 
 func createDatabasesMap() map[string]string {
 	databases := make(map[string]string, 6)
-	databases["postgres"] = "user=postgres password=password dbname=benchmark host=localhost  port=5433 sslmode=disable"
+	databases["postgres"] = "user=postgres password=password dbname=benchmark host=localhost  port=5432 sslmode=disable"
 	databases["mariadb"] = "root:password@tcp(localhost:3307)/benchmark?charset=utf8&parseTime=True&loc=Local"
 	databases["mysql"] = "root:password@tcp(localhost:3306)/benchmark?charset=utf8&parseTime=True&loc=Local"
 	databases["timescale"] = "user=postgres password=password dbname=benchmark host=localhost port=5434 sslmode=disable"
