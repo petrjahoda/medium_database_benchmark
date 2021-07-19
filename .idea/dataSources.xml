@@ -36,19 +36,25 @@
       <jdbc-url>jdbc:sqlserver://localhost:1433</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="postgresDocker@localhost" uuid="674cac75-4ed4-4c81-b6fa-3f6893dac6c8">
+    <data-source source="LOCAL" name="postgresDocker@AMAZON" uuid="674cac75-4ed4-4c81-b6fa-3f6893dac6c8">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://localhost:5433/postgres</jdbc-url>
+      <jdbc-url>jdbc:postgresql://ec2-3-136-26-19.us-east-2.compute.amazonaws.com:5433/postgres</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
+      <driver-properties>
+        <property name="sslmode" value="disable" />
+      </driver-properties>
     </data-source>
-    <data-source source="LOCAL" name="postgresNative@localhost" uuid="c2ad8721-ea3c-405f-b0f9-5a0ec06223ae">
+    <data-source source="LOCAL" name="postgresNative@AMAZON" uuid="c2ad8721-ea3c-405f-b0f9-5a0ec06223ae">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://localhost:5436/postgres</jdbc-url>
+      <jdbc-url>jdbc:postgresql://ec2-3-136-26-19.us-east-2.compute.amazonaws.com:5432/postgres</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
+      <driver-properties>
+        <property name="sslmode" value="disable" />
+      </driver-properties>
     </data-source>
   </component>
 </project>
