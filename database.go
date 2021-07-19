@@ -23,6 +23,7 @@ func readData(databaseType string, databases map[string]string) {
 	switch databaseType {
 	case "postgres":
 		{
+			fmt.Println(databases[databaseType])
 			database, err = gorm.Open(postgres.Open(databases[databaseType]), &gorm.Config{})
 		}
 	case "timescale":
@@ -134,6 +135,7 @@ func createDatabaseAndTable(databaseType string, databases map[string]string) {
 	switch databaseType {
 	case "postgres":
 		{
+			fmt.Println(databases[databaseType])
 			database, err = gorm.Open(postgres.Open(databases[databaseType]), &gorm.Config{})
 		}
 	case "timescale":
