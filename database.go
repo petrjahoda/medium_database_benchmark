@@ -30,11 +30,11 @@ func readData(databaseType string, databases map[string]string) {
 		{
 			database, err = gorm.Open(postgres.Open(databases[databaseType]), &gorm.Config{})
 		}
-	case "mysql":
+	case "mariadb-native":
 		{
 			database, err = gorm.Open(mysql.Open(databases[databaseType]), &gorm.Config{})
 		}
-	case "mariadb":
+	case "mariadb-docker":
 		{
 			database, err = gorm.Open(mysql.Open(databases[databaseType]), &gorm.Config{})
 		}
@@ -72,8 +72,8 @@ func writeBenchmark(databaseType string) {
 func createDatabasesMap() map[string]string {
 	databases := make(map[string]string, 6)
 	databases["postgres"] = "user=postgres password=password dbname=benchmark host=127.0.0.1 port=5432 sslmode=disable"
-	databases["mariadb"] = "root:password@tcp(localhost:3307)/benchmark?charset=utf8&parseTime=True&loc=Local"
-	databases["mysql"] = "root:password@tcp(localhost:3306)/benchmark?charset=utf8&parseTime=True&loc=Local"
+	databases["mariadb-docker"] = "root:password@tcp(localhost:3307)/benchmark?charset=utf8&parseTime=True&loc=Local"
+	databases["mariadb-native"] = "root:password@tcp(localhost:3306)/benchmark?charset=utf8&parseTime=True&loc=Local"
 	databases["timescale"] = "user=postgres password=password dbname=benchmark host=localhost port=5434 sslmode=disable"
 	databases["percona"] = "root:password@tcp(localhost:3308)/benchmark?charset=utf8&parseTime=True&loc=Local"
 	databases["sqlserver"] = "sqlserver://sa:passw0rd.@localhost:1433?database=benchmark"
@@ -92,11 +92,11 @@ func writeData(databaseType string, databases map[string]string) {
 		{
 			database, err = gorm.Open(postgres.Open(databases[databaseType]), &gorm.Config{})
 		}
-	case "mysql":
+	case "mariadb-native":
 		{
 			database, err = gorm.Open(mysql.Open(databases[databaseType]), &gorm.Config{})
 		}
-	case "mariadb":
+	case "mariadb-docker":
 		{
 			database, err = gorm.Open(mysql.Open(databases[databaseType]), &gorm.Config{})
 		}
@@ -142,11 +142,11 @@ func createDatabaseAndTable(databaseType string, databases map[string]string) {
 		{
 			database, err = gorm.Open(postgres.Open(databases[databaseType]), &gorm.Config{})
 		}
-	case "mysql":
+	case "mariadb-docker":
 		{
 			database, err = gorm.Open(mysql.Open(databases[databaseType]), &gorm.Config{})
 		}
-	case "mariadb":
+	case "mariadb-native":
 		{
 			database, err = gorm.Open(mysql.Open(databases[databaseType]), &gorm.Config{})
 		}
@@ -165,7 +165,6 @@ func createDatabaseAndTable(databaseType string, databases map[string]string) {
 		fmt.Println("Problem opening database: " + err.Error())
 		return
 	}
-	fmt.Println(databaseType + " connected")
 
 	if !database.Migrator().HasTable(&BenchmarkData{}) {
 		err := database.Migrator().CreateTable(&BenchmarkData{})

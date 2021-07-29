@@ -45,10 +45,10 @@ func (p program) run() {
 	writingSync.Unlock()
 	for i := 0; i < 5; i++ {
 		if serviceIsRunning {
-			writeBenchmark("postgres")
+			//writeBenchmark("postgres")
 			//writeBenchmark("timescale")
-			//writeBenchmark("mysql")
-			//writeBenchmark("mariadb")
+			writeBenchmark("mariadb-native")
+			writeBenchmark("mariadb-docker")
 			//writeBenchmark("percona")
 			//writeBenchmark("sqlserver")
 			time.Sleep(1 * time.Second)
@@ -56,10 +56,10 @@ func (p program) run() {
 	}
 	for i := 0; i < 5; i++ {
 		if serviceIsRunning {
-			readBenchmark("postgres")
+			//readBenchmark("postgres")
 			//readBenchmark("timescale")
-			//readBenchmark("mysql")
-			//readBenchmark("mariadb")
+			readBenchmark("mariadb-native")
+			readBenchmark("mariadb-docker")
 			//readBenchmark("percona")
 			//readBenchmark("sqlserver")
 			time.Sleep(1 * time.Second)
